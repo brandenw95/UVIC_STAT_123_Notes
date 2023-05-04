@@ -8,7 +8,7 @@
 >
 > Email: cmrkou@uvic.ca
 >
-> Office Hours Room: David Turpin Building A518
+> Office Hours Room: David Turpin Building A518 // BEC 160
 >
 > Office Hours: 
 >
@@ -62,3 +62,37 @@ there is a 5% penalty. I will contact you to explore other options
 ### Final Exam
 
 A 3-hour final exam will be held at the end of the term. The examination date is to be determined by the University and is usually released around the end of June. The examination period is August 8th - 18th, 2023. Students are strongly advised not to make plans for travel or employment during the final examination period as special arrangements will not be made for examinations that conflict with such plans
+
+# Chapter 1
+
+## What is Data Science?
+
+![image-20230503130343869](assets/image-20230503130343869.png)
+
+### Overview
+
+Statistics is the science of data. In this Chapter, we learn some introductory terms related to data and we look at some examples to help illustrate these terms. We will also begin to formulate questions about finding data which we will eventually answer later on in the course.
+
+### Motivating example
+
+More so now than ever, the world is paying attention to statistics. Daily updates on COVID-19 can include number of new infections, positive test rates, mortality rates, vaccination rates, as well as plots of an infection rate curve which we are trying to flatten. Depending on the source, the information being given can paint very different pictures. Are all of these sources equally reliable? Is the data accurate? Is the data being manipulated in a misleading way?
+
+Whenever confronted with data, one of the first and most important questions that should be answered is: Where does the data come from?
+
+### Definitions
+
+> **Individuals / Observations**
+>
+> .
+>
+> Example:
+>
+> .
+
+> **Variables**
+>
+> .
+>
+> Example:
+>
+> .
