@@ -2,6 +2,19 @@
 
 [TOC]
 
+- [Course Intro (syllabus)](#course-intro--syllabus-)
+  * [Learning Objectives](#learning-objectives)
+  * [Evaluation and Grading](#evaluation-and-grading)
+    + [Assignments](#assignments)
+    + [Lab Participation](#lab-participation)
+    + [Midterms](#midterms)
+    + [Final Exam](#final-exam)
+- [Chapter 1](#chapter-1)
+  * [What is Data Science?](#what-is-data-science-)
+    + [Overview](#overview)
+    + [Motivating example](#motivating-example)
+    + [Definitions](#definitions)
+
 # Course Intro (syllabus)
 
 > Professor: Chi Kou
