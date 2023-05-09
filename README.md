@@ -246,8 +246,8 @@ When trying to judge the recycling habits of a neighborhood, researchers went ar
 
 3. You want to determine the number of wine drinkers in Victoria BC so you loiter inside the Liquor Plus store located at Quadra and MacKenzie on Monday January 11th from 3pm-5pm and count the number of people who buy wine at the store.
 
-- <u>Population:</u>
-- <u>Sample:</u> 
+- <u>Population:</u> All people in Victoria
+- <u>Sample:</u> shoppers at liquor stores located at Quadra and MacKenzie on Jan 11th 3pm-5pm.
 
 
 
