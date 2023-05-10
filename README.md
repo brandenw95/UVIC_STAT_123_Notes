@@ -76,19 +76,17 @@ there is a 5% penalty. I will contact you to explore other options
 
 A 3-hour final exam will be held at the end of the term. The examination date is to be determined by the University and is usually released around the end of June. The examination period is August 8th - 18th, 2023. Students are strongly advised not to make plans for travel or employment during the final examination period as special arrangements will not be made for examinations that conflict with such plans
 
-# Chapter 1
-
-## What is Data Science?
+# Chapter 1 - What is Data Science
 
 ![image-20230503130343869](assets/image-20230503130343869.png)
 
-### Overview
+## Overview
 
 Statistics is the science of data. In this Chapter, we learn some introductory terms related to data and we look at some examples to help illustrate these terms. We will also begin to formulate questions about finding data which we will eventually answer later on in the course.
 
 > Note: Descriptive stats only - Summery of data
 
-### Motivating example
+## Motivating example
 
 More so now than ever, the world is paying attention to statistics. Daily updates on COVID-19 can include number of new infections, positive test rates, mortality rates, vaccination rates, as well as plots of an infection rate curve which we are trying to flatten. Depending on the source, the information being given can paint very different pictures. Are all of these sources equally reliable? Is the data accurate? Is the data being manipulated in a misleading way?
 
@@ -98,9 +96,9 @@ Whenever confronted with data, one of the first and most important questions tha
 - Government 
 - non-profit organizations 
 
-### Definitions
+## Definitions
 
-#### Individuals / Observations
+### Individuals / Observations
 
 > **Individuals / Observations**
 >
@@ -114,9 +112,7 @@ Whenever confronted with data, one of the first and most important questions tha
 > - Owls
 > - Tress
 
-
-
-#### Variables
+### Variables
 
 > **Variables**
 >
@@ -129,7 +125,7 @@ Whenever confronted with data, one of the first and most important questions tha
 > - Size
 > - Breed of dog
 
-### Example 1 (Starbucks)
+## Example 1 (Starbucks)
 
 A Starbucks employee decided to collect information about several of their menu items. Consider the resulting data set:
 
@@ -155,9 +151,9 @@ A Starbucks employee decided to collect information about several of their menu 
 - [x] Weight
 - [x] Whether it is a drink
 
-### Definitions
+## Definitions
 
-#### Categorical Variable (Nominal Variable) 
+### Categorical Variable (Nominal Variable) 
 
 > **Categorical Variable (Nominal Variable)** 
 >
@@ -165,9 +161,7 @@ A Starbucks employee decided to collect information about several of their menu 
 >
 > <u>Example:</u> "Whether it is a drink"
 
-
-
-#### Ordinal Variable
+### Ordinal Variable
 
 > **Ordinal Variable**
 >
@@ -175,9 +169,7 @@ A Starbucks employee decided to collect information about several of their menu 
 >
 > <u>Example:</u> "Weight" and "Price"
 
-
-
-#### Numerical Variable (quantitative variable)
+### Numerical Variable (Quantitative Variable)
 
 > **Numerical Variable (quantitative variable)**
 >
@@ -194,7 +186,7 @@ How do we decide what variables to collect in our data?
 > - Categorical Variables can be numbers. (Ex. 0 or 1 for yes and no)
 > - No meaningful operations cannot be done on this.
 
-### Example 2 (Recycling Habits)
+## Example 2 (Recycling Habits)
 
 When trying to judge the recycling habits of a neighborhood, researchers went around weighing the recycling bins of each household. They found that certain streets (with more expensive houses) had heavier recycling bins and other streets (with less expensive houses) had lighter recycling bins. Does this mean that the more expensive your house the more you recycle?
 
@@ -214,21 +206,21 @@ When trying to judge the recycling habits of a neighborhood, researchers went ar
 - Weight determine level of recycling?
 - Different house types, different recycling contents
 
-### Definitions
+## Definitions
 
-#### Population
+### Population
 
 > **Population**
 >
 > The entire group of individuals about which we want information.
 
-#### Sample
+### Sample
 
 > **Sample**
 >
 > A Sample is a subset of a population. If done correctly, we can use a sample to draw a conclusion about a population. (Inferential Stats)
 
-### Example 3 
+## Example 3 
 
 1. You wish to measure the mean weight of 5 month old Koala bears so you find twenty 5-month old Koala bears and weigh them.
 
@@ -249,26 +241,126 @@ When trying to judge the recycling habits of a neighborhood, researchers went ar
 - <u>Population:</u> All people in Victoria
 - <u>Sample:</u> shoppers at liquor stores located at Quadra and MacKenzie on Jan 11th 3pm-5pm.
 
-
-
 > Note: Not all samples are good samples. We will discuss this idea further in later sections but if you choose a bad sample, it is not going to accurately describe the population.
 
-### Definitions
+## Definitions
 
-#### Observational Study
+### Observational Study
 
 > Observational Study
 
-#### Sample Survey
+### Sample Survey
 
 > Sample Survey
 
-#### Census
+### Census
 
 > Census
 
-#### Experiment
+### Experiment
 
 > Experiment
 
- 
+ ## Example 4
+
+- You are trying to determine the proportion of red cars on the road. You decide to count the number of cars that drive by your house and note how many of them are red.
+  - **<u>Type of study:</u>**
+
+- You want to determine if having reading break helps students do better on tests so you schedule one test before reading break and one test immediately after reading break and compare the grades on these tests.
+  - **<u>Type of study:</u>**
+
+- In a (hypothetical) study, you recruited 10 participants. First you measured their alertness (assuming we can) scores. Then you divided the participants into 2 groups of five. For the first group, you gave them a pill that contains some newly developed chemicals to improve alertness. For the second group, you gave them a pill that contains only starch. You waited 15 minutes. Now you measured their alertness again.
+  - **<u>Type of study:</u>**
+
+> **Caution**
+>
+> .
+
+# Chapter 1.5 - Intro to R
+
+## Learning Outcomes
+
+For the first introduction to R, we are going to go over the following:
+
+- See the difference between R and RStudio
+- Writing commands in a script vs directly in the console.
+- Opening an R Markdown file. 
+- Check and set the directory that we are working in. 
+- Adding, subtracting, multiplying, dividing and averaging values.
+- Assigning values to a variable.
+- Vectors.
+
+## Difference between R and RStudio
+
+R is a programming language used for statistical computing while RStudio uses the R language to develop statistical programs. RStudio is an example of an integrated development environment or IDE.
+
+You can use R without RStudio but you cannot use RStudio without R (since RStudio uses R).
+
+## The Advantage of RStudio
+
+RStudio has a much more user-friendly interface which makes it
+nice especially for beginning programmers. Additionally, RStudio allows users to develop and edit programs in R by supporting a large number of statistical packages, higher quality graphics, the ability to manage your workspace, and conveniently has a way to present your code and output as a pdf, HTML, or Github document (just a few examples).
+
+## Writing Commands in the Console vs a Script
+
+### Console
+
+You can type commands directly into the console, each command will start with a > symbol, followed by the command.
+
+Once you press enter, the command will be executed. For example, type into the console 5+2, press enter, and then type 6-3, and press enter:
+
+```R
+
+```
+
+
+
+### Script
+
+To open a script in RStudio, click on File − > New File − > R Script. The script will open above the console. In a script you type the commands each on their own line. Notice that if you press enter in the script, the command is not executed. 
+
+For example, type into the script 5+2, press enter, and then type 6-3, and press enter:
+
+```R
+
+```
+
+#### Running the script
+
+If we want to execute the commands in the script, we need to Run the code. You can do this in a few different ways:
+
+1. Click on the line in the script with the command that you wish to execute. Then click on − >Run.
+2. Highlight the line in the script the command that you wish to execute. Then click on − >Run.
+3. Click on the line in the script with the command that you wish to execute. Then (for Macs) press Command+Enter or (for PC) press Ctrl+Enter.
+
+> **<u>Notice:</u>** When you run the code from a script, the output is shown in the console, not in the script itself.
+
+> <u>**Question:**</u> Why not just type all of our commands into the console since typing it into a script
+> involves an extra step to run the code?
+>
+> <u>**Answer:**</u>
+>
+> .
+
+## Using R Markdown
+
+## Checking and Setting your Directory
+
+## Set your Working Directory in R Studio
+
+## Adding, Subtracting, Multiplying, Dividing and Averaging in R
+
+## Assigning a value to a variable
+
+## Types of Variables
+
+## Vectors
+
+## DataCamp Assignment
+
+# Chapter 2 - Samples, Good and Bad
+
+# Chapter 3 - What do Samples Tell Us?
+
+# Chapter 4 - Sampling and Computing Statistics in R
+
