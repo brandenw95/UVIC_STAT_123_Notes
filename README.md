@@ -344,19 +344,186 @@ If we want to execute the commands in the script, we need to Run the code. You c
 
 ## Using R Markdown
 
+R Markdown is a feature of RStudio which allows you to combine your script and output all in the same document. To open up a new R Markdown click on File − > New File − > R Markdown. 
+
+In this course, when using R Markdown, we will only be creating documents. You can type in the title of your document and also select the format of your document (either HTML, PDF or Word).
+
+> Note 1: If you wish for your document output to be in PDF format, you will need to download something called LaTeX which is a free Math programming language (I use it to write all of your notes). You can download it at: https://www.latex-project.org/get/
+
+> Note 2: You do not need to download LaTeX if you want your document to be an HTML or Word file.
+
+#### Advantage of R Markdown
+
+(To be filled in)
+
+You will be learning how to use R Markdown in your first lab.
+
 ## Checking and Setting your Directory
+
+If is a good idea to create a file dedicated to your Stat 123 R assignments/labs. For example, I’ve created a folder called R Stat123 which is where I will save all content related to assignments and labs in this course.
+
+You will need to tell R what file you want it to look in. For example, if you are given a data set to download and you save it to your RStat123 folder. You will need to tell R to find that data file in that folder.
 
 ## Set your Working Directory in R Studio
 
+In order to set your directory using R Studio, click on Session − > Set Working Directory − > Choose Directory. Then select the folder that you’ve designated for R assignments.
+
+If you want to double check that you’ve set your working directory correctly, you can type in the command: 
+
+```R
+
+```
+
+If you want to set your directory manually you can use the command:
+
+```R
+
+```
+
 ## Adding, Subtracting, Multiplying, Dividing and Averaging in R
+
+You already saw that we can directly perform arithmetic operations in R by using the keys:
+
+```R
+
+```
+
+There are also R commands that can add or multiply many numbers:
+
+```R
+
+```
+
+To find the average, we must add up all of the values and then divide by the number of values:
+
+```R
+
+```
+
+> **<u>Question:</u>** Is there a better way to do this?
+>
+> **<u>Answer:</u>** Yes, with vectors.
+
+In R, a vector is a list of values (which could be numerical values, TRUE/FALSE statements, characters, etc..). 
+
+Before we can talk about vectors, we must first learn how to assign a value to a variable:
 
 ## Assigning a value to a variable
 
+In R, we can use either < − or = to assign a value to a variable. For example:
+
+```R
+
+```
+
+After assigning a value to a variable, if we want to see the value of that variable (or print the value of that variable) we just type the variable name as the command and run that line of code.
+
 ## Types of Variables
+
+- Character - 
+- Numeric - 
+- Integer - 
+- Logical - 
 
 ## Vectors
 
-## DataCamp Assignment
+To create a vector in R, we use the command c( ).
+
+For example, the vector V containing the numbers ( 6, 12, -3, 2, 51 ) can be assigned using the command:
+
+```R
+
+```
+
+The vector C containing the characters ( Apple, Orange, Grape, Other ) can be assigned using the command:
+
+```R
+
+```
+
+If we want to assign a sequence of numbers (each separated by 1) then we can use a colon: 
+
+For example, the code c(4 : 9) =
+
+```R
+
+```
+
+We can also write a sequence of numbers each separated by an amount k by using the command seq(a, b, k). 
+
+For example, the code seq(4, 9.0.5) =
+
+```R
+
+```
+
+Combining this together, to get a vector which contains a sequence of numbers from 6 to 20, each separated by 0.2, we would use the command:
+
+```R
+
+```
+
+> **<u>Question:</u>** Why are vectors useful? 
+>
+> **<u>Answer:</u>** We can perform arithmetic operations using vectors which is much easier than performing those operations by individually typing in values.
+
+### Examples
+
+Define a vector called days which contains the days of the week (starting from Sunday) and another vector called classes which contains the numbers (0, 2, 4, 5, 4, 3, 0) which represent the number of hours of classes a student has each day of the week.
+
+We can add up the total number of classes in a week:
+
+```R
+
+```
+
+We can determine the average number of hours of classes each day of the week:
+
+```R
+
+```
+
+If we want to only access some days of the week, we can specify which item of the vector classes we want to look at. For example, we can look at only the hours in the 3rd day of the week:
+
+```R
+
+```
+
+We can look at only the hours from the weekdays (day 2 to day 6 of the week):
+
+```R
+
+```
+
+We could assign a variable called weekdays to the vector which contains only the hours of classes during the week:
+
+```R
+
+```
+
+We could then take the average number of hours of classes each weekday:
+
+```R
+
+```
+
+We can assign the days vector to be the names of the classes vector elements:
+
+```R
+
+```
+
+So if we want to access Thursdays class hours we have two options:
+
+```R
+
+```
+
+## DataCamp Assignments
+
+**The datacamp course:** 
+
+Introduction to R have been assigned in datacamp as an assignment. Students in this course should have received an email from datacamp inviting them to sign up for free. Once you sign in to your account, check the due date for various assignments.
 
 # Chapter 2 - Samples, Good and Bad
 
