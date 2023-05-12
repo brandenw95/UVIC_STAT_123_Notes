@@ -371,13 +371,13 @@ In order to set your directory using R Studio, click on Session − > Set Workin
 If you want to double check that you’ve set your working directory correctly, you can type in the command: 
 
 ```R
-
+getwd()
 ```
 
 If you want to set your directory manually you can use the command:
 
 ```R
-
+setwd("Your dir")
 ```
 
 ## Adding, Subtracting, Multiplying, Dividing and Averaging in R
@@ -385,19 +385,20 @@ If you want to set your directory manually you can use the command:
 You already saw that we can directly perform arithmetic operations in R by using the keys:
 
 ```R
-
++, -, *, /, ^
 ```
 
 There are also R commands that can add or multiply many numbers:
 
 ```R
-
+2+3+4+5
+2*4
 ```
 
 To find the average, we must add up all of the values and then divide by the number of values:
 
 ```R
-
+(2+3+4) / 3
 ```
 
 > **<u>Question:</u>** Is there a better way to do this?
@@ -413,17 +414,19 @@ Before we can talk about vectors, we must first learn how to assign a value to a
 In R, we can use either < − or = to assign a value to a variable. For example:
 
 ```R
-
+x <- 3
+x = 3
 ```
 
 After assigning a value to a variable, if we want to see the value of that variable (or print the value of that variable) we just type the variable name as the command and run that line of code.
 
 ## Types of Variables
 
-- Character - 
-- Numeric - 
-- Integer - 
-- Logical - 
+- Character - "Y", "N"
+- String - "Yes"
+- Numeric - 2, 56, -1
+- Integer - -2, 0, 10
+- Logical - TRUE, FALSE
 
 ## Vectors
 
@@ -432,13 +435,15 @@ To create a vector in R, we use the command c( ).
 For example, the vector V containing the numbers ( 6, 12, -3, 2, 51 ) can be assigned using the command:
 
 ```R
-
+V <- c(2, 3,4,5,7)
+or 
+V = c(2,3,4,5)
 ```
 
 The vector C containing the characters ( Apple, Orange, Grape, Other ) can be assigned using the command:
 
 ```R
-
+C <- c( Apple, Orange, Grape, Other ) 
 ```
 
 If we want to assign a sequence of numbers (each separated by 1) then we can use a colon: 
@@ -446,7 +451,7 @@ If we want to assign a sequence of numbers (each separated by 1) then we can use
 For example, the code c(4 : 9) =
 
 ```R
-
+v <- c(4:9)
 ```
 
 We can also write a sequence of numbers each separated by an amount k by using the command seq(a, b, k). 
@@ -454,7 +459,7 @@ We can also write a sequence of numbers each separated by an amount k by using t
 For example, the code seq(4, 9.0.5) =
 
 ```R
-
+seq(4, 8.7, 5)
 ```
 
 Combining this together, to get a vector which contains a sequence of numbers from 6 to 20, each separated by 0.2, we would use the command:
@@ -474,49 +479,50 @@ Define a vector called days which contains the days of the week (starting from S
 We can add up the total number of classes in a week:
 
 ```R
-
+sum(classes)
 ```
 
 We can determine the average number of hours of classes each day of the week:
 
 ```R
-
+mean(classes)
 ```
 
 If we want to only access some days of the week, we can specify which item of the vector classes we want to look at. For example, we can look at only the hours in the 3rd day of the week:
 
 ```R
-
+classes[3]
 ```
 
 We can look at only the hours from the weekdays (day 2 to day 6 of the week):
 
 ```R
-
+weekdasy[2:6]
 ```
 
 We could assign a variable called weekdays to the vector which contains only the hours of classes during the week:
 
 ```R
-
+weekdays <- classes[2:6]
 ```
 
 We could then take the average number of hours of classes each weekday:
 
 ```R
-
+mean(weekdays)
 ```
 
 We can assign the days vector to be the names of the classes vector elements:
 
 ```R
-
+names(classes) = days
 ```
 
 So if we want to access Thursdays class hours we have two options:
 
 ```R
-
+classes[5]
+classes["Thursday"]
 ```
 
 ## DataCamp Assignments
