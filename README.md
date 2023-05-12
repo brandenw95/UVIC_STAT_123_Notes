@@ -533,6 +533,80 @@ Introduction to R have been assigned in datacamp as an assignment. Students in t
 
 # Chapter 2 - Samples, Good and Bad
 
+## Overview
+
+In this section, we begin to explore sampling as a method used to estimate features of a population. We will talk about a few different kinds of samples, some which are biased and some that seek to eliminate any bias.
+
+## Motivating Example
+
+Suppose we want to determine the prevalence of a certain disease (I think
+we can all think of one that is of concern these days) in Canada. In order to actually determine the true value of this proportion, we would need to test every single person in the population for the disease with a test that is 100% accurate. That would be incredibly expensive and essentially impossible to execute. Instead, we could take a **sample** of Canadians and test them for the disease. How do we choose who is in the sample? What if someone selected for the sample refuses to participate in the study?
+
+## Types of samples
+
+We now define 4 different kinds of samples:
+
+- **<u>Convenience sample</u>** 
+  - Select whichever individuals that are the easiest to reach (ex. asking survey on the street)
+  - Problem: Sample may not represent the population
+- **<u>Voluntary response sample</u>**
+  - Chooses itself by responding to a general appeal 
+  - Same problem as above
+  - Ex. voting, volunteer polling
+- **<u>Simple random sample (or SRS)</u>**
+  - 
+- **<u>Stratified random sample</u>**
+  - 
+
+## Practice Question
+
+Suppose I want to determine the proportion of current UVic students who
+plan on taking Stat 353 at some point in their degree. I want to collect a sample from UVic’s population and I have a few ideas on how to take this sample.
+
+In each scenario described below, determine what kind of sampling is being described.
+
+> I get a list of all of the students numbers of current UVic students (as well as the corresponding email addresses) and randomly select 200 of them to contact and ask this question.
+
+- [ ] Convenience
+- [ ] Voluntary Response
+- [ ] SRS
+- [ ] Stratified Random
+
+> I ask everyone in Stat 123 to answer this question on their first homework assignment and use the entire class as my sample.
+
+- [ ] Convenience
+- [ ] Voluntary Response
+- [ ] SRS
+- [ ] Stratified Random
+
+> I post signs around UVic asking students to contact me with their answer to the question.
+
+- [ ] Convenience
+- [ ] Voluntary Response
+- [ ] SRS
+- [ ] Stratified Random
+
+> I randomly sample 5% of the students from each department at UVic.
+
+- [ ] Convenience
+- [ ] Voluntary Response
+- [ ] SRS
+- [ ] Stratified Random
+
+
+
+Certain types of sampling can produce something called bias. We say that a sample is biased if:
+
+
+
+Almost always, convenience sampling and voluntary response sampling produce a biased sample. It is best to do some type of random sampling.
+
+> <u>**Question:**</u> When should you use a Simple Random Sample vs a Stratified Random Sample? 
+>
+> **<u>Answer:</u>**
+
+> Note: There are other types of random sampling that we did not define here which are explored further in Stat 354.
+
 # Chapter 3 - What do Samples Tell Us?
 
 # Chapter 4 - Sampling and Computing Statistics in R
