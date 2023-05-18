@@ -554,9 +554,12 @@ We now define 4 different kinds of samples:
   - Same problem as above
   - Ex. voting, volunteer polling
 - **<u>Simple random sample (or SRS)</u>**
-  - 
+  - n individuals 
+  - Those n individuals are chosen in the population in such a way that they are equally likely to be selected.
+  - Ex. population of 14 students in this class. Want a random sample of 3. 
 - **<u>Stratified random sample</u>**
-  - 
+  - Stratified random sampling is a type of probability method using which a research organization can branch off the entire population into multiple non-overlapping, homogeneous groups (strata) and randomly choose final members from the various strata for research
+  - Reduces cost and improves efficiency.
 
 ## Practice Question
 
@@ -592,8 +595,6 @@ In each scenario described below, determine what kind of sampling is being descr
 - [ ] Voluntary Response
 - [ ] SRS
 - [ ] Stratified Random
-
-
 
 Certain types of sampling can produce something called bias. We say that a sample is biased if:
 
