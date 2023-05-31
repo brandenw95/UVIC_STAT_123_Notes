@@ -688,6 +688,75 @@ newM = rbind(M, c(30, 105))
 
 Matrices are indexed by row position and column position. Suppose we have a matrix that is called M, then:
 
+```R
+M[1,2] # row 1 column 2
+```
+
+```R
+M[4,3] # Row 4 column 3
+```
+
+```R
+M[ ,2] # Selct column 2
+```
+
+```R
+M[3, ] # Select 3rd row
+```
+
+```R
+M[1:3, ] # Select first 3 rows of M		
+```
+
+```R
+M[ ,1:4] # First 4 columns or columns 1 - 4
+```
+
+## Finding and locating max and min in a matrix or vector
+
+```R
+max(M) # FInds the max
+min(M) # Finds the min
+```
+
+## Difference between the matrix() and as.matrix() commands
+
+```R
+matrix() # Creates a matrix from a vector
+as.matrix() # Converts a compatible object to a matrix
+```
+
+## Data Frame
+
+**Recall**: In a **matrix** all the elements must be the **same type of data.** 
+
+A data frame is similar to a matrix, The structure of a data frame is more flexible. The columns of a data frame are allowed to **contain different types of data**, Many data sets that we download or that are available to us in R are data frames.
+
+In R, if you type ”mtcars” without the quotation marks, you will display the built-in dataset mtcars. If you type ?mtcars, R will display the description of the data frame.
+
+![image-20230531094516072](assets/image-20230531094516072.png)
+
+- What are the individuals?
+  - Car name 
+- What are the variables?
+  - those 11 variables
+- Which variable(s) is (are) categorical?
+  - am, vs
+- Which variable(s) is (are) numerical?
+  - the rest
+
+## Working with individual variable(s) within a data frame
+
+To display the variable hp, you can type:
+
+```R
+mtcars$hp
+```
+
+Matrix indexing also works with data frames:
+
+![image-20230531094726527](assets/image-20230531094726527.png)
+
 # Chapter 3 - What do Samples Tell Us?
 
 # Chapter 4 - Sampling and Computing Statistics in R
