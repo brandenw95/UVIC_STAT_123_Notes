@@ -247,34 +247,42 @@ When trying to judge the recycling habits of a neighborhood, researchers went ar
 
 ### Observational Study
 
-> Observational Study
+> **Observational Study**
+>
+> observes individuals and measure variable values of interest without intervention.
+>
+> ex. "as-is"
 
 ### Sample Survey
 
-> Sample Survey
+> **Sample Survey**
+>
+> Surveys only some of the individual of the population (sample) by observing values of variable (No intervention).
 
 ### Census
 
-> Census
+> **Census**
+>
+> Attempts to include the whole population.
+>
+> ex. Stats Canada
 
 ### Experiment
 
-> Experiment
+> **Experiment**
+>
+> Deliberately impose some "Treatment" on individuals in order to measure their responses (Intervention)
 
  ## Example 4
 
 - You are trying to determine the proportion of red cars on the road. You decide to count the number of cars that drive by your house and note how many of them are red.
-  - **<u>Type of study:</u>**
+  - Type of study: **<u>Observational</u>**
 
 - You want to determine if having reading break helps students do better on tests so you schedule one test before reading break and one test immediately after reading break and compare the grades on these tests.
-  - **<u>Type of study:</u>**
+  - Type of study: **<u>Experiment</u>** (Control vs treatment)
 
 - In a (hypothetical) study, you recruited 10 participants. First you measured their alertness (assuming we can) scores. Then you divided the participants into 2 groups of five. For the first group, you gave them a pill that contains some newly developed chemicals to improve alertness. For the second group, you gave them a pill that contains only starch. You waited 15 minutes. Now you measured their alertness again.
-  - **<u>Type of study:</u>**
-
-> **Caution**
->
-> .
+  - Type of study: **<u>Experiment</u>** 
 
 # Chapter 1.5 - Intro to R
 
@@ -307,23 +315,13 @@ nice especially for beginning programmers. Additionally, RStudio allows users to
 
 You can type commands directly into the console, each command will start with a > symbol, followed by the command.
 
-Once you press enter, the command will be executed. For example, type into the console 5+2, press enter, and then type 6-3, and press enter:
-
-```R
-
-```
-
-
+Once you press enter, the command will be executed. For example, type into the console 5+2, press enter, and then type 6-3, and press enter.
 
 ### Script
 
 To open a script in RStudio, click on File − > New File − > R Script. The script will open above the console. In a script you type the commands each on their own line. Notice that if you press enter in the script, the command is not executed. 
 
-For example, type into the script 5+2, press enter, and then type 6-3, and press enter:
-
-```R
-
-```
+For example, type into the script 5+2, press enter, and then type 6-3, and press enter.
 
 #### Running the script
 
@@ -572,12 +570,12 @@ In each scenario described below, determine what kind of sampling is being descr
 
 - [ ] Convenience
 - [ ] Voluntary Response
-- [ ] SRS
+- [x] SRS
 - [ ] Stratified Random
 
 > I ask everyone in Stat 123 to answer this question on their first homework assignment and use the entire class as my sample.
 
-- [ ] Convenience
+- [x] Convenience
 - [ ] Voluntary Response
 - [ ] SRS
 - [ ] Stratified Random
@@ -585,7 +583,7 @@ In each scenario described below, determine what kind of sampling is being descr
 > I post signs around UVic asking students to contact me with their answer to the question.
 
 - [ ] Convenience
-- [ ] Voluntary Response
+- [x] Voluntary Response
 - [ ] SRS
 - [ ] Stratified Random
 
@@ -594,21 +592,105 @@ In each scenario described below, determine what kind of sampling is being descr
 - [ ] Convenience
 - [ ] Voluntary Response
 - [ ] SRS
-- [ ] Stratified Random
+- [x] Stratified Random
 
 Certain types of sampling can produce something called bias. We say that a sample is biased if:
 
-
+- It systematically favor's different outcomes. A biased sample is one that is NOT representative of convenience, voluntary (biased)
 
 Almost always, convenience sampling and voluntary response sampling produce a biased sample. It is best to do some type of random sampling.
 
 > <u>**Question:**</u> When should you use a Simple Random Sample vs a Stratified Random Sample? 
 >
-> **<u>Answer:</u>**
+> **<u>Answer:</u>** Stratified sampling should be used when you believe that each stratum will be different from the overall population. Simple random sampling should be used if you think that all the sub groups are bout the same.
 
 > Note: There are other types of random sampling that we did not define here which are explored further in Stat 354.
+
+# 2.5 Matrices and Data Frames in R
+
+## Learning Outcomes:
+
+- Defining a matrix in R.
+- Naming the rows and columns of a matrix in R.
+- Commands to sum the columns and rows of a matrix.
+- How to add another row or column to a matrix.
+- How to select specific elements from a matrix.
+- The difference between the as.matrix() and the matrix() command.
+- What is the difference between a matrix and a data frame?
+
+> **Matrix**
+>
+> An m×n matrix is a 2-dimensional rectangular table with m rows and n columns. Each cell in the matrix is identified by its row and column indices or names. In a matrix all the elements must be the same type of data. A matrix in R is like a mathematical matrix, containing all the same type of values (usually numbers).
+
+## Defining a Matrix in R
+
+In order to create a matrix in R, you use the command matrix(). The input for this function is a vector and then the number of rows or columns you want. For example:
+
+![image-20230531092510909](assets/image-20230531092510909.png)
+
+You might want to specify how the matrix should be filled (that is, should it be filled by row or by column). There is an extra input that you can type in the matrix() function that accomplishes this:
+
+```R
+x <- matrix(c(1:6), nrow=3, byrow=TRUE)
+x <- matrix(c(1:6), byrow=TRUE, nrow=3)
+x <- matrix(c(1:6), nrow=3) # Warning fill in missing values using vectors (reuse)
+```
+
+Often times, the matrix is organizing data in a useful way. Perhaps the columns represent the values of certain variables and the rows represent the individuals in the sample. It is nice to associate meaning to the values in the matrix by naming the rows and the columns. For example:
+
+Suppose we have a matrix with 4 rows and 2 columns and the rows represent the individuals A, B, C, D and the first column represents the variable Weight and the second column represents the variable Age. Suppose the pairs of data are as follows: 
+
+(80,12), (40,3), (20,0.8), (25,1)
+
+(a) Create a matrix M with these values.
+
+```R
+M = Matrix(c(80,12,40,3,20,0.8,25,1), byrow=TRUE, nrow=4)
+```
+
+(b) Create a vector called individuals which contains the individuals A,B,C,D and create a vector called variables which contains the two variables Weight and Age.
+
+```R
+individuals = c("A", "B", "C", "D")
+variables = c("weight", "age")
+```
+
+(c) Use the R commands colnames() and rownames() to set the names of the matrix M to the appropriate vectors from part (b).
+
+```R
+colnames(M) = variables
+rownames(M) = individuals
+```
+
+## Adding up the rows and columns of a matrix
+
+There are commands rowSums() and colSums() which add up the rows and columns of a matrix.
+
+```R
+rowSums(M)
+```
+
+```
+colSums(M)
+```
+
+## Adding another row or another column to an existing Matrix
+
+Sometimes, you may wish to add more information to your matrix. Rather than re-create the matrix, we can add another row using the command rbind() and add another column using the command cbind().
+
+For example, suppose that we wished to add another individual E with weight 30 and age 1.5 to our matrix. This amounts to adding another row. We could do this by typing in:
+
+```R
+newM = rbind(M, c(30, 105))
+```
+
+## Selecting an element or a row or a column from a Matrix
+
+Matrices are indexed by row position and column position. Suppose we have a matrix that is called M, then:
 
 # Chapter 3 - What do Samples Tell Us?
 
 # Chapter 4 - Sampling and Computing Statistics in R
+
+# Chapter 5 - Data Wrangling with dplyr Package
 
