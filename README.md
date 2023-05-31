@@ -759,6 +759,28 @@ Matrix indexing also works with data frames:
 
 # Chapter 3 - What do Samples Tell Us?
 
+## Overview
+
+In Chapter 2, we talked about various types of sampling. In this section, we will discuss the size of the sample and the variability of your results depending on the sample size and the population that the sample comes from. We will discuss the difference between a <u>parameter</u> and a <u>statistic</u>.
+
+## Motivating Example
+
+Suppose a chef makes a large pot of soup. He wants to check if the soup is over-salted so he takes one spoonful of the soup and tastes it. Suppose an editor wants to double check a 600-page novel for typos so they spot check 35 pages. Suppose a psychologist wants to determine the effects of an anti-anxiety drug on patients, she analyzes the results of 500 patient files. In these examples there is a sample of size 1, a sample of size 35, and a sample of size 500. How should you decide how large a sample size needs to be?
+
+We begin with some definitions:
+
+> **Parameter**
+>
+> some number that describes the population.
+
+> **Statistic**
+>
+> A method or way to estimate the population parameter
+
+# Practice Question
+
+Suppose we are interested in the average height of all current NBA playersand we currently have access to players on the Toronto Raptors.
+
 # Chapter 4 - Sampling and Computing Statistics in R
 
 # Chapter 5 - Data Wrangling with dplyr Package
