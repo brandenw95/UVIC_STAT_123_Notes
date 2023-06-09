@@ -779,9 +779,15 @@ We begin with some definitions:
 
 # Practice Question
 
-Suppose we are interested in the average height of all current NBA playersand we currently have access to players on the Toronto Raptors.
+Suppose we are interested in the average height of all current NBA players and we currently have access to players on the Toronto Raptors.
 
 # Chapter 4 - Sampling and Computing Statistics in R
 
 # Chapter 5 - Data Wrangling with dplyr Package
+
+# Chapter 6 - Visualization
+
+# Chapter 7 - Distribution
+
+# Chapter 8 - Normal Distribution
 
