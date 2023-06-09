@@ -1,0 +1,60 @@
+---
+title: "Lab 4"
+author: ""
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+```{r}
+
+#1a.
+library(tidyverse)
+
+#1b.
+super <- read.csv("Superstores.csv")
+
+#1c.
+total_sales <- super %>% filter(Category == "Office Supplies") %>% summarise(total_sales = sum(Sales))
+total_sales
+
+#1d.
+superCali <- super %>% filter(State == "California")
+head(superCali)
+
+#1e.You can use your creativity to produce different layouts.
+ggplot(super, aes(x = Region, fill = Region)) + geom_bar() + labs(title = "Order By Region")
+
+```
+
+## Question 2
+
+```{r}
+library(palmerpenguins)
+#2a.
+
+head(penguins)
+
+#2b.
+# specify the width of the bins to suit your need
+average_body_mass <- mean(penguins$body_mass_g, na.rm = TRUE)
+
+ggplot(penguins, aes(x = body_mass_g)) + geom_histogram(fill = "green", color = "red") + geom_vline(xintercept = average_body_mass, color = "blue", linetype = "solid") + labs(title = "Penguin Body Mass")
+
+```
+
+## Question 3
+
+```{r}
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) + geom_line() + labs(title = "Penguin flipper Length vs. Body Mass")
+
+```
+
+>What do you think of the plot? Do you think a line plot is appropriate? Why or why not?
+>yes its appropriate because it generally shpows the bigger the penguin the longer the flipper. 

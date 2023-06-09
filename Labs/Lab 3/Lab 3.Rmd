@@ -1,0 +1,83 @@
+---
+title: 'Lab3: Data Frames'
+author: "Branden Walter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+# Question 0
+
+#### (a) Delete all sample code from the R markdown file. 
+> Done
+
+#### (b) For each question, insert a new chunk and label the question number.
+> Done
+
+# Question 1
+
+#### (a) Read the inflation consumer file into R and call it Inflation.df. 
+```{r}
+Inflation.df <- read.csv("inflation_consumer.csv")
+```
+
+#### (b) How many observations (rows) are in this dataset? How many variables (columns)? 
+```{r}
+num_rows <- nrow(Inflation.df)
+num_cols <- ncol(Inflation.df)
+num_rows
+num_cols
+```
+
+#### (c) What is the mean value for the Year column? Does this value have any meaning? 
+```{r}
+mean_year <- mean(Inflation.df$Year) 
+mean_year
+```
+
+#### (d) Determine which country has the lowest inflation and the corresponding year.
+```{r}
+min_inflation <- Inflation.df[which.min(Inflation.df$Inflation),]
+min_inflation
+```
+
+#### (e) Determine which country has the highest inflation and the corresponding year.
+```{r}
+max_inflation <- Inflation.df[which.max(Inflation.df$Inflation),]
+max_inflation
+```
+
+
+# Question 2
+
+#### (a) Create a new data frame that contains all countries with inflation over 7.00 and save it to Sub Inflation.
+```{r}
+Sub_Inflation <- Inflation.df[Inflation.df$Inflation > 7.00,]
+```
+
+#### (b) Determine the average of the inflation column and save this to a variable called avg.inflation.
+```{r}
+avg.inflation <- mean(Sub_Inflation$Inflation)
+avg.inflation
+```
+
+#### (c) Use Sub Inflation to determine the number of country counts with inflation over 15.00 and print out the value.
+```{r}
+num_overfifteen_countries <- nrow(Sub_Inflation[Sub_Inflation$Inflation > 15.00,])
+num_overfifteen_countries 
+```
+
+#### (d) Create a vector named Inflation Status which contains two levels: High and Low. All countries in Sub Inflation with inflation over 15.00 should be labeled as High, otherwise named as Low.
+```{r}
+Sub_Inflation$Inflation_Status <- ifelse(Sub_Inflation$Inflation > 15, "High", "Low")
+```
+
+#### (e) Use the Inflation Status vector to print out the number of country counts with Inflation over that 15.00. This number should be the same as in part (c).
+```{r}
+num_high_inflation_status_countries <- sum(Sub_Inflation$Inflation_Status == "High")
+num_high_inflation_status_countries
+```
+
+
+# Question 3
+
+#### Once you make sure all the code works in the R markdown file, knit it to either an HTML or Word file. Make sure the file contains all answers to the questions. Then open the knitted file and print it as a PDF file. The name of the file should be Stat123 Lab03 YourLastName.pdf. Then submit the pdf file to the appropriate Brightspace folder.
+> Done

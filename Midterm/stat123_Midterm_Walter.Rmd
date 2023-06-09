@@ -1,0 +1,24 @@
+---
+title: "STAT 123 Midterm"
+author: "Branden Walter"
+dtudentNumber: "V00820364"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Question 1
+```{r}
+
+```
+
+
+# Question 2
+```{r}
+
+```
+
+# Question 3
+```{r}
+
+```
+

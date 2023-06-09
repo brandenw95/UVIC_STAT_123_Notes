@@ -1,0 +1,16 @@
+---
+title: "Lab 1"
+author: "Branden Walter"
+date: "`r Sys.Date()`"
+output:
+  
+  html_document: default
+---
+> Note: Stats123_lab1_WalterBranden.pdf
+
+## Question 1
+
+```{r}
+my_test <- c(1,2,3,4,4)
+```
+

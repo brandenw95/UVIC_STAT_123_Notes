@@ -1,0 +1,66 @@
+---
+title: "Lab 1"
+author: "Branden Walter"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Question 1
+
+a). Create a vector called countries which contains the names of 5 countries that you would like to visit some day.
+```{r}
+countries <- c("Germany", "Italy", "Russia", "Spain", "Romania")
+```
+
+b). Print out the elements of the vector.
+```{r}
+countries
+```
+
+c). Print out the 4th element of the vector.
+```{r}
+countries[4]
+```
+
+# Question 2
+a). Create a vector called nums which contains the numbers 5, 6, 7, 8, 9,..., 199, 200 (consecutive integers)
+```{r}
+nums <- 5:200
+```
+
+b). Use the length() function to find the number of numbers in the vector.
+```{r}
+length(nums)
+```
+
+c). Use the sum() function to add up all of the values in nums.
+```{r}
+sum(nums)
+```
+
+d). Use the mean() function to find the average of all of the values in nums.
+```{r}
+mean(nums)
+```
+
+# Question 3
+a). Create a vector called sleep which contains how many hours of sleep you get on each day of the week (starting with Monday).
+```{r}
+sleep <- c(8,8,8,8,8,8,8)
+```
+
+b). Create a vector called days which contains the names of the days of the week (starting with Monday).
+```{r}
+days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+```
+
+c). Use the names() function to set the names of the sleep vector to the values of the days vector.
+```{r}
+names(sleep) <- days
+```
+
+d). Show two different ways to print out the number of hours of sleep you get on a Sunday.
+```{r}
+sleep
+print(sleep)
+```
