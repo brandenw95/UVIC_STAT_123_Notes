@@ -1154,9 +1154,354 @@ If you want to learn more about a certain data set. You can type a question mark
 
 # Chapter 5 - Data Wrangling with dplyr Package
 
+## Overview
 
+Once we loaded a dataset onto R, we may want to ”prepare” the data before visualizing and/or analyze it. In Data Science, we called the process data wrangling. R has some built-in functions for data wrangling. The R package dplyr, is written specifically for data wrangling. It is part of the bigger packages tidyverse. When we install tidyverse, dplyr is also installed.
+
+- We can use dplyr to sort, filter, and manipulate data in a data frame.
+
+## Install the packages
+
+First, you must install the packages (your R should now be up-to-date and
+able to install these packages). Type the following into your R console (note: Don’t type this in an R Markdown Chunk, you only need to run this line of code 1 time).
+
+```R
+install.packages("dplyr") 
+# or
+install.packages("tidyverse") # if you want to dplyr and other packages
+```
+
+## Load packages
+
+You only need to install R packages one time. However, each time you start
+a new session (or a new markdown file), if you want to use any of these packages, you need to load them into your session. Type the following into your first chunk in your R markdown file:
+
+```R
+library(dplyr) 
+# or
+library(tidyverse) # if you want to dplyr and other packages
+```
+
+## Data
+
+For this lesson, we will use the Real Estate data set. Download RealEstate.csv from Brightspace. Read that data set into your R session.
+
+## Using the dplyr Package
+
+This package is used when you have a data set that you want to subset,
+organize, manipulate or create new columns from. To use different functions in this package, we use something called **piping** which we describe below.
+
+## Piping
+
+Piping is a method that takes something (could be a variable or the output of a function) and feeds it into something else (usually a function). The general structure for piping is:
+
+#### Example: Consider the following code
+
+```R
+x <- 9 x %>% sqrt()
+```
+
+We can also pipe multiple times. The same structure still follows where the item on the left gets piped into the next item to its right and so on:
+
+```R
+x <- c(9, 25) x %>% sqrt() %>% sum()
+```
+
+## Verbs
+
+The functions in the dplyr package are called verbs. You can think of these as the actions that you wish to apply to the data.
+
+We now go over some of the verbs that are part of the dplyr package:
+
+### rename()
+
+We often need to refer to the column names of the data frame. We can rename the columns using the rename() verb.
+
+#### Example
+
+Suppose we wanted to shorten the column names in the real-estate data frame. We can do this with the following code:
+
+```R
+colnames(realEstate)
+
+realEstate %>% rename(
+    date=col_names[2],
+    age = col_names[3], 
+    distance = col_names[4],
+    stores = col_names[5], 
+    latitude = col_names[6], 
+    longitude = col_names[7], 
+    price = col_names[8])
+
+colnames(realEstate)
+```
+
+#### Problem
+
+We have renamed the columns of real-estate but we haven’t saved this newly named data frame as anything so we can’t refer back to it. To adjust this code so that we save it to a new data frame, we type:
+
+```R
+realEstate2 = realEstate %>% rename(
+    date=col_names[2],
+    age = col_names[3], 
+    distance = col_names[4],
+    stores = col_names[5], 
+    latitude = col_names[6], 
+    longitude = col_names[7], 
+    price = col_names[8])
+
+colnames(realEstate2)
+```
+
+
+
+### arrange()
+
+This verb allows us to sort the values of a column in either ascending or descending order.
+
+> **<u>Note</u>**: The default for this verb is to sort the values in ascending order (from smallest to biggest).
+
+#### Example
+
+```R
+realEstate2 %>% arrange(price) 
+realEstate2 %>% arrange(desc(price))
+```
+
+### filter()
+
+This verb allows you to subset the data frame based on some condition. The general form for using the filter verb is as follows:
+
+#### Example
+
+Suppose we only wanted to consider houses that are older than 10 years. We could do this using filter:
+
+```R
+realEstate2 %>% filter(age > 10)
+```
+
+#### Practice questions
+
+How many houses in the data frame are near 6 convenience stores?
+
+- [x] 21
+- [ ] 37
+- [ ] 96
+- [ ] 281
+
+### mutate()
+
+This verb can change a variable (column) or add a new column.
+
+#### Changing an existing column
+
+```R
+realEstate2 %>% mutate(age = age*365)
+```
+
+#### Add new column
+
+```R
+realEstate2 %>% mutate(dist_in_100m = distance/100)
+```
+
+### summarize()
+
+This verb allows you to compute summarizing values for variables (such as mean or median or standard deviation). The general form for the summarize verb is:
+
+#### Example
+
+```R
+gapminder %>% summarize(mean_pop = mean(pop))
+```
+
+#### Practice Question
+
+se the summarize command to determine the median life expectancy in the entire gapminder data frame, calling it med lifeExp.
+
+- [ ] 59.47444
+- [ ] 60.7125
+- [ ] 12.91711
+
+### Using multiple verbs (combining verbs)
+
+It is often the case that you want to use more than one verb. Since we use piping, the order in which you pipe the output of one verb into another matters.
+
+### Practice Questions
+
+- Determine the median life expectancy for Canada (hint: combine the verbs filter and summarize).
+
+- [ ] 74.985
+- [ ] 74.90275
+- [ ] 24499150
+
+- What are the two countries in Europe with the largest population in 2002?
+
+- [ ] Germany and United Kingdom
+- [ ] Turkey and United Kingdom
+- [ ] Germany and Turkey
+
+
+
+### group_by()
+
+This verb allows you to group categorical variables together (it is often used with other verbs or to help with plotting).
+
+#### Example
+
+```R
+gapminder %>% group_by(country) %>% summarize(mean_pop = mean(pop))
+```
+
+## Extra Practice Problems from DataCamp
+
+The course ’Data Manipulation with dplyr’ or ‘Introduction to the Tidyverse’ in DataCamp has very good short video explanations on how to use this package. They also use the gapminder dataset.
 
 # Chapter 6 - Visualization
+
+## Overview
+
+ So far, we’ve discussed different ways of collecting data (methods of sampling) and we’ve seen how to read an external data set into R and how to access particular values from a data set whether it is a matrix or a data frame. We also learned some basic data wrangling techniques. We will now begin exploring how to visualize the data once it is read into R.
+
+Visualization of data is a very important presentation method. It is a quick way to represent the data and to illustrate what the data is telling you. That being said, caution must be taken when choosing how to display the data visually as not all types of plots are appropriate for all types of data.
+
+## Motivating Example
+
+ Suppose you have several data sets that you want to visualize. These
+include the final letter grade distribution for a previous Stat 123 class, the annual lynx trappings in Canada, and the number of gears in a variety of manual and automatic cars. What is the best way to display these data sets?
+
+In this chapter, we will cover several types of plots: bar charts, histograms, scatter plots, and line plots. We will not use R’s built-in graphics. Instead, we will use the gglot2 package.
+
+## Examples
+
+```R
+#realEstate = read.csv("RealEstate.csv", header = TRUE)
+
+library(tidyverse) #this will load ggplot2, dplyr, and other packages
+
+# or 
+
+library(ggplot2)   #just this if you only want to present graphics
+
+
+ggplot()          # show an empty canvas
+
+
+# Download grades.csv and rawgrades.csv from Brightspace
+
+
+Grades.distn <- read.csv("grades.csv")
+
+Grades.distn
+
+#load tidyverse before using read_csv()
+
+#Grades.distn <- read_csv("grades.csv")
+
+# Vertical bar graph
+ggplot(Grades.distn, aes(x = Grade, y = Count)) + geom_bar(stat = "identity")
+
+
+# horizontal bar graph
+ggplot(Grades.distn, aes(x = Count, y = Grade)) + geom_bar(stat = "identity")
+
+
+# set colour of the bars
+ggplot(Grades.distn, aes(x = Count, y = Grade)) + geom_bar(stat = "identity", fill = "red")
+
+
+# set colour of the bars using colour code and add title and labellings:
+
+ggplot(Grades.distn, aes(x = Grade, y = Count)) + geom_bar(stat = "identity", fill = "#FF6666") +
+  ggtitle("Grade Distribution") + labs(y = "Frequency")
+
+
+# set different colours for different bars
+
+ggplot(Grades.distn, aes(x = Count, y = Grade, fill = Grade)) + geom_bar(stat = "identity") +
+  ggtitle("Grade Distribution") + labs(x = "Frequency")
+
+# different orientation
+
+ggplot(Grades.distn, aes(x = Grade, y = Count, fill = Grade)) + geom_bar(stat = "identity") +
+  ggtitle("Grade Distribution") + labs(x = "Frequency")
+
+# data comes in without frequency counts yet
+
+rawgrade <- read_csv("rawgrades.csv")
+
+head(rawgrade)
+
+# To produce frequency table
+
+rawgrade %>% group_by(Grade) %>% count
+
+# Same as above, Add the column name "Frequency"
+
+rawgrade %>% group_by(Grade) %>% count(name = "Frequency")
+
+
+# Produce bar graph
+
+ggplot(rawgrade, aes(y = Grade)) + geom_bar()
+
+
+ggplot(rawgrade, aes(x = Grade, y= after_stat(count/sum(count)), fill = Grade)) + geom_bar() +
+  ggtitle("Grade Distribution") + labs(y = " Relative Frequency")
+
+
+ggplot(rawgrade, aes(x = Grade, y= after_stat(100*count/sum(count)), fill = Grade)) + geom_bar() +
+  ggtitle("Grade Distribution") + labs(y = " Relative Frequency (%)")
+
+# histogram demo
+
+?morley
+
+# basic histogram
+
+ggplot(morley, aes(x = Speed)) + geom_histogram()
+
+
+mean(morley$Speed)
+
+# add a vertical line to indicate the average speed from the data
+
+# try it for median instead
+
+ggplot(morley, aes(x = Speed)) + geom_histogram() + 
+  geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1.0)
+
+
+# set histogram borders to red and the bars to green
+
+ggplot(morley, aes(x = Speed)) + geom_histogram(color = "red", fill = "green") + 
+  geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1.0)
+
+
+# change the width (interval length) of the bins
+
+ggplot(morley, aes(x = Speed)) + geom_histogram(binwidth = 50, 
+  color = "red", fill = "green") + 
+  geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1.0)
+
+
+# limit the histogram to include values between 700 and 1000 only
+
+ggplot(morley, aes(x = Speed)) + geom_histogram(aes(y = after_stat(count / sum(count))), 
+  color = "red", fill = "green") + 
+  geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1.0) +
+  xlim(700, 1000) 
+
+# lineplots:
+
+class(lynx)
+
+Year <- 1821:1934
+lynx.df <- as.data.frame(cbind(Year, lynx))
+head(lynx.df)
+
+ggplot(lynx.df, aes(x = Year, y = lynx)) + geom_line()
+```
 
 # Chapter 7 - Distribution
 
