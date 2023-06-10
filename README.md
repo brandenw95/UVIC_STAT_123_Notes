@@ -769,11 +769,11 @@ Suppose a chef makes a large pot of soup. He wants to check if the soup is over-
 
 We begin with some definitions:
 
-> **Parameter**
+> <u>**Parameter**</u>
 >
 > some number that describes the population.
 
-> **Statistic**
+> <u>**Statistic**</u>
 >
 > A method or way to estimate the population parameter
 
@@ -781,9 +781,380 @@ We begin with some definitions:
 
 Suppose we are interested in the average height of all current NBA players and we currently have access to players on the Toronto Raptors.
 
+1. <u>**The population is?**</u>
+
+- [x] Current NBA players
+- [ ] Current Raptors players
+- [ ] All Basketball players
+
+2. <u>**The sample is?**</u>
+
+- [ ] Current NBA players
+- [x] Current Raptors players
+- [ ] All Basketball players
+
+3. **<u>What is the parameter we are interested in?</u>**
+
+- [x] The average height of all current NBA players.
+- [ ] The average height of current Raptors’ players.
+
+4. **<u>What is a statistic we can use to estimate the population parameter?</u>**
+
+- [ ] The average height of all current NBA players.
+- [x] The average height of current Raptors’ players.
+
+5. **<u>The average height of current Raptors’ players is 6 foot 5 inches. What does this value represent? Select all that apply.</u>**
+
+- [ ] The Population parameter
+- [x] an estimate of the population parameters
+- [ ] A statistic
+- [x] The observed value of a statistic.
+
+## Examples of desired Parameters and the Statistics used to estimate them
+
+### Example 1 (Mean)
+
+#### <u>Parameter:</u> Population mean 
+
+$$
+\mu = \frac{{\sum_{i=1}^{N} x_i}}{{N}}
+$$
+
+- *N* is the total number of observations in the population, and
+- x_i represents each individual observation in the population.
+
+#### <u>Statistic:</u> Sample mean 
+
+$$
+\bar{x} = \frac{{\sum_{i=1}^{n} x_i}}{{n}}
+$$
+
+- *n* is the total number of observations in the sample, and
+- x_i represents each individual observation in the sample.
+
+### Example 2 (Proportion)
+
+#### Parameter: Population Proportion
+
+p = (# of subjects in the population that has the characteristic)/ (population)
+
+#### Statistic:
+
+p^ = (# of subjects in the sample with the characteristic) / (number of people in sample) 
+
+> Note: 
+>
+> A statistic doesn’t necessarily do a good job estimating the population parameter. For example, you could use a statistic that just always equals 6. Unless you are trying to estimate a parameter that has the value 6, this is probably not a good statistic.
+>
+> We usually use statistics that involves computing the same quantity that is desired in the population just on the available sample instead.
+
+## Sampling Bias vs Statistic Bias:
+
+> **<u>Bias</u>**
+>
+> a consistent, repeated deviation of the sample statistic from the population parameter in the same direction when we take many samples.
+
+- Bias is in the **sample** if we do not chose from the sample "randomly"
+  - Some individuals are more likely to be selected.
+- Bias is in the **statistic** if you were to repeatedly take random samples and you never expect the statistic to equal the parameter value.
+
+> Note:
+>
+> We will not be exploring bias in a statistic in this course but if you take other stats courses this is a very important topic.
+
+- Another thing which can greatly impact a sample is variability.
+
+> Variability
+>
+> escribes how spread out the value in the population is.
+
+![image-20230609201807860](assets/image-20230609201807860.png)
+
+When we are sampling, we would like there to be little or no sampling bias and small variability.
+
+#### Variability Analogy: Dart Board
+
+You can think of the population parameter as the bullseye and the darts being thrown as the statistic estimating the parameter. Sampling bias results in the dart being consistently thrown to the same part of the board, away from the bullseye. Variability results in darts being thrown all over the board, not very close together.
+
+![image-20230609201913629](assets/image-20230609201913629.png)
+
+> **<u>Question</u>**: 
+>
+> We already saw that if our sample is not random, it will be biased. Thus, to reduce bias in a study, we need to select our sample randomly. If the population we are sampling from does not have small variability, what can we do to make sure our sample accurately reflects the population?
+>
+> **<u>Answer</u>**:
+>
+> Increase the sample size. The larger the sample, the lower something called the variance of the sampling distribution is (we will define this later on). Basically, a large sample can better capture the population.
+
+> Note:
+>
+> Samples don’t always need to be large. If the population does not have large variability then the sample can be small.
+
+Consider the 3 scenarios discussed in the motivating example:
+
+> A chef takes one spoonful of soup as a sample for the entire pot. Why is this an appropriate sample size?
+>
+> - n=1, as long as you stir, there is essentially no variability in the population. (The whole pot)
+
+> An editor spot-checks 35 pages of a 600 page novel for typos. Why is this an appropriate sample size?
+>
+> - There is no reason to think the novel has more typos on certain pages
+> - If the spot check yields many typos, we may decide that all pages need revisions.
+
+> A psychologist analyzes 500 patient files in order to determine the effects of an anti-anxiety drug on patients. Why is her sample so large?
+>
+> - N = 500
+> - 500 is small relative to the population
+> - people are different (in general)
+> - may need larger sample from more accurate estimation.
+
 # Chapter 4 - Sampling and Computing Statistics in R
 
+## Learning Outcomes
+
+- Produce n random numbers in R. 
+- How to select a random sample from a vector in R.
+- How to set a seed in R.
+- Access data that is built-in to R. 
+- Read a data file into R. 
+- Access a column of data.
+- Compute sample statistics in R (including sample *mean*, sample *proportion* and sample *variance*)
+
+## Motivation
+
+- faster results
+- simulation
+- debug
+
+## Producing n random numbers in R
+
+Suppose we want to select n random integers between a and b inclusive. The following command in R will do this:
+
+```R
+sample(a:b, n)
+```
+
+- a = min
+- b = max
+- n = size of  sample
+- a < b
+
+So, for example the code:
+
+```R
+sample(2:75, 20)
+```
+
+Results in a vector of length 20, entries from 20 to 75.
+
+> Note:
+>
+> The default for the sample() command is to perform sampling without replacement. This means that the same individual cannot be in the sample more than once. If you want to change that to allow for an individual to be in the sample more than once (referred to as sampling with replacement then you would type in:
+>
+> ```R
+> sample(2:75, 40, replace = TRUE)
+> ```
+
+Show how to use the sample function both with and without replacement.
+
+```{r Using sample function}
+# sample without replacement
+
+sample(2:75,20)
+
+# or
+
+sample(75, 20)
+
+# this will give an error
+
+# sample(1:20, 75)
+
+
+# sample with replacement 
+
+sample(1:20, 75, replace = TRUE)
+
+sample(50:60,16,replace=TRUE)
+
+
+
+```
+
+Exercise:
+
+```{r Exercise Question}
+# Part (a)
+friends = c("Rachel","Ross","Joey","Chandler","Monica", "Phoebe")
+
+# Part (b)
+who.pay.for.dinner <- sample(friends,2)
+
+# Part (c)
+who.pay.for.dinner
+
+# Set seed to keep sample the same
+set.seed(7)
+new.sample = sample(friends,2)
+new.sample
+
+
+```
+
+Exploring built-in data sets
+
+```{r exploring data}
+# look at the different data sets built into R
+data()
+
+# learn more about the sleep data set
+?sleep
+
+# load the sleep data set into R
+data("sleep")
+
+```
+
+Practice with built-in data sets
+
+```{r}
+data(trees)
+
+head(trees)
+
+?trees
+
+mean(trees$Girth)
+
+```
+
+Read in external data file
+
+```{r read in graduates data}
+
+# to read in the data file
+# MAKE SURE the data file is in your working directory
+
+read.csv("SecondaryGraduates.csv") # won't save as data frame
+
+# read in data and name the data GradData
+GradData = read.csv("SecondaryGraduates.csv")
+
+# preview first 6 rows of the data set
+head(GradData)
+
+# preview first 3 rows of the data set
+head(GradData,3)
+
+# you can also preview the last 6 rows of the data set
+tail(GradData)
+
+```
+
+Practice Question:
+
+```{r Practice Question}
+# Question 3: determine the mean
+mean(GradData$Number)
+
+class(GradData$Year)
+
+mean(GradData$Year)
+
+# Question 4: assign the year column to a vector
+# Now we are "transforming" the data
+
+yrs = as.character(GradData$Year)
+class(yrs)
+
+mean(yrs)
+
+# Question 5: assign the number column to a vector
+# We are extracting data from a data set
+num.grads = GradData$Number
+num.grads
+
+# Question 6: name the num.grads vector using the yrs vector
+names(num.grads)=yrs
+num.grads
+
+# This is useful to have the number of graduates in a named
+# vector because now it is easy to access specific years using
+# their name. 
+num.grads["2013"]
+
+# Question 7: Take a random sample of size 6 
+set.seed(21)
+samp = sample(num.grads,6)
+samp
+
+# Question 8: Take the mean of the sample (x bar statistic)
+mean(samp)
+
+
+```
+
+## How to select a random sample from a vector in R
+
+would be nice to be able to create a sample of individuals directly in R (rather than labelling our individuals with numbers and then using the sample() function to pick a sample of numbers.
+
+You can use the sample() function on a vector. So if you put your individuals inside a vector, then you can sample the individuals from the vector directly.
+
+```R
+# (a) Create a vector of names for the individuals in a dinner party
+
+friends <- c("Alice", "Bob", "Charlie", "Dave", "Emma")
+
+# (b) Define a variable called friends.sample which is equal to a random sample of size 2 from friends
+
+set.seed(42)  # Setting a seed for reproducibility
+friends.sample <- sample(friends, size = 2)
+
+# (c) Print out the value of the variable friends.sample
+
+print(friends.sample)
+#[1] "Dave"   "Charlie"
+
+# (d) Run the code again (choosing the sample and printing out the variable)
+
+set.seed(42)  # Setting the same seed for reproducibility
+friends.sample <- sample(friends, size = 2)
+print(friends.sample)
+
+# (e) Did the sample stay the same?
+
+#Yes, the sample stayed the same because we set the seed value to 42 before generating the random sample. By setting the same seed value, we ensure that the random number generation process produces the same sequence of random numbers, resulting in the same sample being selected each time the code is run.
+```
+
+## Setting a seed in R
+
+In R, there is a function called set.seed() which sets the starting number
+used to generate a sequence of random numbers. It ensures that you get the same result if you start with that same seed each time you run the same process.
+
+For example, if I use the sample() function immediately after setting a seed, I will always get the same sample.
+
+So in the previous example, to get the same sample each time we run the code, we write the code as:
+
+```R
+set.seed(42)  # Setting a seed for reproducibility
+friends.sample <- sample(friends, size = 2)
+```
+
+This is important for reproducibility of your results. If you are writing a paper, you want someone who runs your code to get the same results that you wrote about in your paper.
+
+## Accessing Data that is built into R
+
+R has many built-in data sets which are there for you to use and practice with. To see a list of the available data sets type in the command:
+
+```R
+data()
+```
+
+If you want to learn more about a certain data set. You can type a question mark followed by the name of the data set into R.
+
 # Chapter 5 - Data Wrangling with dplyr Package
+
+
 
 # Chapter 6 - Visualization
 
