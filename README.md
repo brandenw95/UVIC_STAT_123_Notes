@@ -1760,6 +1760,8 @@ Approximately what percentage of observations of X should fall between
 
 We will illustrate both methods of approximating quantiles using an example.
 
+![image-20230613130507785](assets/image-20230613130507785.png)
+
 ### Example
 
 Download and save the variable.X.Sample.csv dataset from Brightspace. Then, read the data into R.
