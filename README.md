@@ -921,7 +921,7 @@ Suppose we are interested in the average height of all current NBA players and w
 #### <u>Parameter:</u> Population mean 
 
 $$
-\mu = \frac{{\sum_{i=1}^{N} x_i}}{{N}}
+\mu = \frac{{\sum_{i=1}^{N} x_i}}{{N}}
 $$
 
 - *N* is the total number of observations in the population, and
@@ -930,7 +930,7 @@ $$
 #### <u>Statistic:</u> Sample mean 
 
 $$
-\bar{x} = \frac{{\sum_{i=1}^{n} x_i}}{{n}}
+\bar{x} = \frac{{\sum_{i=1}^{n} x_i}}{{n}}
 $$
 
 - *n* is the total number of observations in the sample, and
@@ -1611,3 +1611,169 @@ ggplot(lynx.df, aes(x = Year, y = lynx)) + geom_line()
 
 # Chapter 8 - Normal Distribution
 
+## Overview
+
+In Chapter 7, we explored ways of describing the center and the spread of distributions. We saw that, for symmetric distributions, using the mean and the standard deviation is a way to achieve this and for non-symmetric distributions, it is more appropriate to use the median and quartiles. In this chapter, we discuss a way of smoothing the appearance of our distribution and then we focus on a very special type of distribution called the Normal Distribution.
+
+## Motivating Example
+
+Suppose we take a sample of 100 individuals from a population and observe
+some numerical variable for each individual in the sample. If we then create a histogram to help visualize the distribution of the variable, the histogram will appear as several rectangles. What if we wanted to represent the distribution with a smooth curve instead of rectangles?
+
+> **<u>Density Curve</u>**
+>
+> For a given variable X measured on some population, a density curve for X is
+
+## Sketch of a density curve
+
+Suppose we had the following histogram, a density curve would look like a smooth curve that follows a similar pattern as the histogram:
+
+![image-20230613123323285](assets/image-20230613123323285.png)
+
+## How to plot a density curve using ggplot2
+
+It should not be a surprise that we can use the word geom density() in ggplot2. 
+
+> **<u>Note:</u>**  that a density curve has a total area of 1 underneath it.
+
+### Example
+
+Consider the CO2 dataset built into R and the variable of the carbon dioxide uptake rates from a variety of grass species.
+
+- The following ggplot command will produce a histogram and a density curve in the same plot.
+
+```R
+ggplot(CO2, aes(x = uptake)) + geom_histogram(aes(x=uptake ,y= after_stat(density)), binwidth = ) + geom_density(aes(x=uptake,y=after_stat(density)), col = "red")
+```
+
+- Just like other graphs in ggplot2, you can add colour and title to the density curve.
+
+```R
+ggplot(CO2, aes(x = uptake)) + geom_histogram(aes(x=uptake ,y= after_stat(density)), binwidth = 3) + geom_density(aes(x=uptake,y=after_stat(density)), col = "red") + ggtitle("Distribution of Carbon Dioxide Uptake") + labs(x = expression(paste("carbon dioxide uptake rates (", mu, "mol/", m^2, " sec)")))
+```
+
+> **<u>Question:</u> ** 
+>
+> How can we represent the median and mean on density curves?
+>
+> **<u>Answer:</u>** 
+>
+> We know that median represents the value at which 50% of the observations lie below.
+> With a density curve, this means that 50% of the area below the curve will lie to the left of the median and 50% of the area will lie to the right of the median.
+>
+> For the mean, we think of the point on the density curve at which the curve would balance if it was made of solid material. This can be difficult to eyeball (which is why we normally just compute the mean using software).
+>
+> Consider the estimated density curves for some variables X, Y and Z:
+>
+> ![image-20230613124249349](assets/image-20230613124249349.png)
+
+> Note: 
+>
+> Curve for X: Symmetric Distribution (Mean = Median)
+>
+> Curve for Y: Right-skewed Distribution (Mean > Median)
+
+## Summery
+
+When a density curve is symmetric, the mean and the median are both at the same point; the center of the curve. When the curve is not symmetric, the mean gets pulled away from the median, in the direction of the tail of the distribution.
+
+We now introduce one of the most famous distributions in statistics; the **<u>Normal Distribution</u>** (Gaussian Distributed).
+
+ A variable X is called **normally distributed** if the density curve is described by a complicated formula (you do not need to know this formula). This distribution is symmetric about its mean and shaped like a bell (that is, has a peak in the center and has tails which fall off quickly).
+
+The following code will produce a normal density curve:
+
+```R
+x <- c(1:50, by=0.05) 
+y <- dnorm(x, mean = 20, sd = 5) 
+normaldata <- as.data.frame(cbind(x, y))
+
+ggplot(normaldata, aes(x = x, y = y)) + geom_line()
+```
+
+## Properties of the Normal Density Curve
+
+- The Normal curve is completely described by
+
+> Its mean and its standard deviation
+
+- The mean determines
+
+> The center of the distribution
+
+- The standard deviation determines
+
+> The width of the curve 
+
+
+
+> **<u>*WARNING:*</u>** 
+>
+> All normal density curves are symmetric and bell-shaped. Not all symmetric and bell-shaped curves are normal.
+
+## The 68-95-99.7 Rule
+
+With any Normally distributed variable X, approximately:
+
+- 68% of observations fall within 1 Standard deviations from the mean.
+- 95% of observations fall within 2 Standard deviations from the mean.
+- 99.7% of observations fall within 3 Standard deviations from the mean.
+
+![image-20230613125752659](assets/image-20230613125752659.png)
+
+### Example
+
+Suppose you have a variable X which is normally distributed with mean 12 and standard deviation 3. Determine the range of values that 95% of the observations should fall within.
+$$
+(\mu -20\%, \mu + 20\%)
+$$
+(12 -2(3), 12+2(3)) = (6,18)
+
+### Practice Question
+
+Approximately what percentage of observations of X should fall between
+(3, 21)?
+
+- [ ] 68%
+
+- [ ] 95%
+
+- [x] 99.7%
+
+  
+
+> **<u>Question:</u>**
+>
+> What if we want to determine the range of values for different percentages?
+>
+> **<u>Answer:</u>**
+>
+> In any second year stat course you will learn how to do this by hand (using something called the standard normal distribution). In this course, I will show you two different methods to approximate these values in R.
+>
+> Recall from Chapter 7, the command:
+>
+> ```R
+> quantile(X,0.25)
+> ```
+
+## Approximating the Quantiles of a Normally Distributed Variable
+
+We will illustrate both methods of approximating quantiles using an example.
+
+### Example
+
+Download and save the variable.X.Sample.csv dataset from Brightspace. Then, read the data into R.
+
+<u>**Step1:**</u> Determine if the variable is approximately normal.
+
+
+
+We notice:
+
+
+
+**<u>Step 2 (Method 1):</u>** Use the quantile() function to determine the quantiles (often referred to as percentiles) from the sample. This will approximate the true quantiles/percentiles in the population. 
+
+Suppose, for example, we wanted to approximate the range of values such that 80% of the observations of X fall between these values:
+
+Sketch:
