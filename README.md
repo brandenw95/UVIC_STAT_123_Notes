@@ -1779,3 +1779,159 @@ We notice:
 Suppose, for example, we wanted to approximate the range of values such that 80% of the observations of X fall between these values:
 
 Sketch:
+
+## Determining the quantile/percentile of an observation
+
+What if we want to go in the other direction? That is, what if we want to know what percentage of observations fall below a given observation?
+
+We use the function pnorm() (where the p stands for percentile and norm still stands for normal). Again, this function takes in 3 arguments: the observation value that you wish to find the percentile for, and the mean and standard deviation of the variable.
+
+### Example
+
+Using again the sample mean and sample standard deviation for X
+
+(a) Determine the percentile of the observation 41.49.
+
+Percentage of x-value that are below 41.49
+
+```R
+pnorm(41.49, x_bar, s)
+```
+
+(b) Determine the percentile of the observation 36.41.
+
+```R
+pnorm(36.41, x_bar, s)
+```
+
+> **<u>Note:</u>**
+>
+> this can also be a vector of values
+
+> **<u>Question:</u>**
+>
+> What types of variables are normally distributed?
+>
+> **<u>Answer:</u>**
+>
+> height, weight, students grades, etc.
+
+- Some real life variables are roughly normal distributed (symmetric and bell-shaped). Examples of types of variables that are often normally distributed are:
+  - height, weight, students grades, etc.
+- Certain statistics are approximately normally distributed. Examples of such statistics are:
+  - (From theory)
+  - Sample Mean.
+  - Sample Proportion.
+  - They are approximately normally distributed when the sample is large.
+
+> **<u>Question:</u>** 
+>
+> What does it mean for a statistic to be approximately normally distributed? 
+>
+> **<u>Answer:</u>**
+>
+> If we were to take many samples of size n, and compute the sample mean of  those samples. Then we produce a histogram and density curve. It will then look very normal.
+
+## Demo in R Showing the Distribution of different statistics
+
+We will now look at a demonstration in R which shows that the distribution of the sample mean is approximately normal (when the sample is large) and that the distribution of the sample standard deviation is not normal.
+
+he code for this demo will be posted in Brightspace.
+
+> **<u>Question:</u>** 
+>
+> Since, for large samples, we know that the sample mean and sample proportion are normally distributed, what are the means and standard deviations for their distributions? 
+>
+> **<u>Answer:</u>** 
+>
+> The mean and standard deviation of the sample mean X̄ are:
+>
+> - Mean (μ<sub>X̄</sub>): μ (same as the population mean)
+> - Standard Deviation (σ<sub>X̄</sub>): σ / √n (where σ is the population standard deviation and n is the sample size)
+>
+> The mean and standard deviation of the sample proportion ˆp are:
+>
+> - Mean (μ<sub>ˆp</sub>): p (same as the population proportion)
+> - Standard Deviation (σ<sub>ˆp</sub>): √((p(1-p))/n) (where p is the population proportion and n is the sample size)
+
+> **<u>Standard error:</u>**
+>
+> The standard deviation for the statistic 
+>
+> 
+
+We often need to estimate the standard error of a statistic. The estimated standard error for the sample mean and the sample proportion are:
+$$
+(sample proportion): \sqrt{\frac{p(1-p)}{n}}
+$$
+
+$$
+(sample mean): \frac{\sigma}{\sqrt{n}}
+$$
+
+
+
+## Practice Question
+
+Use R, to determine the estimated standard error of the sample mean for
+the X variable sample from the variable.X.Sample.csv dataset that you downloaded earlier in the notes. Round your answer to 3 decimal places.
+
+```R
+s = sd(x)
+n = length(x)
+ese = s/sqrt(n)
+```
+
+- [ ] 0.228
+- [ ] 2.727 
+- [ ] 36.759
+- [ ] 143
+
+> **<u>Question:</u>** 
+>
+> Why is this useful? 
+>
+> **<u>Answer:</u>** 
+>
+> We can use all these to compute something called **<u>*confidence interval.*</u>**
+
+A confidence interval is an interval we use to find an estimate for some population parameter.
+
+ex. pop. mean, pop proportion, pop standard deviation, etc.
+
+## Motivating Example
+
+Suppose a lightbulb manufacturer wants to determine the average lifespan
+of their bulbs. They take a random sample of 80 lightbulbs from their production line and then record the number of hours the lightbulbs stay on before burning out (this test takes a number of days). The resulting data produces a *sample mean lifetime of 103.4 hours*. How accurate is this estimate? Is the value of the sample mean close to the value of the population mean? How confident can we be that the true average lifetime of their lightbulbs lie within ±3 hours of this time?
+
+These are some of the questions we seek to discuss further in this part of the chapter.
+
+> **<u>Estimate (Population Parameter)</u>**
+>
+> is another term for the observed value of the statistic.
+>
+> - ex. x_bar = x_1 + x_2 ...+ x_80 / 80  = is a statistic
+> - x_bar is also an estimator for population mean.
+> - The estimate is the actual value which is 103.4 in example
+
+> **<u>Margin of error</u>**
+>
+> - A value computed using both the size of the sample and (if known, the variability in the population)
+>
+> - It represents the amount (below and above) the estimate that the true parameter belong within with percentage of confidence.
+>
+> - in this example, margin of error is 3 hours.
+>
+>   - 103.4 +- 3 hours
+>
+>     ```R
+>     moe()
+>     ```
+>
+>     
+
+> **<u>Confidence interval</u>**
+>
+> is a range of values (estimate is in the middle of the range)which we are y% confident that contains the true value of the parameter. 
+>
+> - (estimate) +/- (margin of error)
