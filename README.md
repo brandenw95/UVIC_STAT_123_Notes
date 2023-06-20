@@ -861,6 +861,52 @@ Matrix indexing also works with data frames:
 
 ![image-20230531094726527](assets/image-20230531094726527.png)
 
+
+
+## There are many ways to create a data frame
+
+Example: Suppose we want to create a data frame below:
+
+```R
+smaple.df
+```
+
+|      | Name  | Age  | Vote  |
+| ---- | ----- | ---- | ----- |
+| 1    | Juan  | 22   | TRUE  |
+| 2    | Maria | 15   | FALSE |
+| 3    | Mark  | 19   | TRUE  |
+
+### Example
+
+ You may want to convert a data frame to a matrix (or vice versa). Here is an example. Consider the data frame PlantGrowth that is one of the built-in data sets in R.
+
+```R
+# Load the PlantGrowth dataset
+data(PlantGrowth)
+```
+
+(a) Print out the first 2 rows of the data frame using the head() command.
+
+```R
+head(PlantGrowth, n = 2)
+```
+
+(b) Use the as.matrix command to create a matrix called weightMatrix containing only the first column of the data frame.
+
+```R
+weightMatrix <- as.matrix(PlantGrowth[, 1])
+```
+
+(c) Use the class() function to confirm that weightMatrix is in fact a matrix, and that PlantGrowth is a data frame.
+
+```R
+class(weightMatrix)
+class(PlantGrowth)
+```
+
+
+
 # Chapter 3 - What do Samples Tell Us?
 
 ## Overview
@@ -942,7 +988,7 @@ $$
 
 p = (# of subjects in the population that has the characteristic)/ (population)
 
-#### Statistic:
+#### Statistic: Sample Porportion
 
 p^ = (# of subjects in the sample with the characteristic) / (number of people in sample) 
 
@@ -951,6 +997,28 @@ p^ = (# of subjects in the sample with the characteristic) / (number of people i
 > A statistic doesn’t necessarily do a good job estimating the population parameter. For example, you could use a statistic that just always equals 6. Unless you are trying to estimate a parameter that has the value 6, this is probably not a good statistic.
 >
 > We usually use statistics that involves computing the same quantity that is desired in the population just on the available sample instead.
+
+### Example 3 (Variance)
+
+#### Parameter: Population Variance
+
+$$
+\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2
+$$
+
+
+
+#### Statistic: Sample Variance
+
+$$
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
+$$
+
+> Note: 
+>
+> A statistic doesn’t necessarily do a good job estimating the population parameter. For example, you could use a statistic that just always equals 6. Unless you are trying to estimate a parameter that has the value 6, this is probably not a good statistic.
+>
+> We usually use statistics that involves computing the same quantity that is desired in the population just on the available sample instead
 
 ## Sampling Bias vs Statistic Bias:
 
@@ -968,7 +1036,7 @@ p^ = (# of subjects in the sample with the characteristic) / (number of people i
 
 - Another thing which can greatly impact a sample is variability.
 
-> Variability
+> **<u>Variability</u>**
 >
 > escribes how spread out the value in the population is.
 
@@ -993,6 +1061,8 @@ You can think of the population parameter as the bullseye and the darts being th
 > Note:
 >
 > Samples don’t always need to be large. If the population does not have large variability then the sample can be small.
+
+
 
 Consider the 3 scenarios discussed in the motivating example:
 
@@ -1204,6 +1274,8 @@ would be nice to be able to create a sample of individuals directly in R (rather
 
 You can use the sample() function on a vector. So if you put your individuals inside a vector, then you can sample the individuals from the vector directly.
 
+### Exercise  
+
 ```R
 # (a) Create a vector of names for the individuals in a dinner party
 
@@ -1255,6 +1327,81 @@ data()
 ```
 
 If you want to learn more about a certain data set. You can type a question mark followed by the name of the data set into R.
+
+If you want to load a certain data set into R, then you type in the command data(data.set.name). For example, to load the sleep data set into R, type:
+
+```R
+data(sleep)
+```
+
+## How to access a single column of a data set
+
+If your data set has multiple columns (this is data frame), you might wish to compute some value using only one of the columns of the data set. 
+
+For example, consider the trees data set in R. This gives the diameter, height and volume for black cherry trees. If we want to compute the average height in our sample of cherry trees then we can access that specific column using the $ symbol:
+
+```R
+data(trees)
+
+# Accessing the height column and computing the average
+average_height <- mean(trees$height)
+```
+
+### Practice Question
+
+Use the trees data set to answer the following questions:
+
+1. What is the average diameter of the sample of cherry trees? (Round your answer to 2 decimal places)
+   - [ ] 15.36
+   - [ ]  11.83
+   - [x] 13.25
+   - [ ] 14.75
+
+2. What does the value from the previous question (average diameter of the sample of cherry trees) represent?
+   - [ ] A sample Statistic
+   - [x] An observed value of the sample statistic.
+   - [ ] A population parameter.
+
+3. What is the sample size?
+   - [x] 31
+   - [ ] 40
+   - [ ] 41
+   - [ ] 50
+
+## How to read an external data file into R
+
+If you collect your own data, or download a data set from a website (for example Statistics Canada), then you need to be able to read the data into R so that you can work with the data set in the program.
+
+For example, I downloaded a data set from Stats Canada which consists of the number of secondary education graduates in Canada between the years 2003 and 2019. I saved the data as a CSV file in my R Stat123 file. I called the file SecondaryGraduates. To read this file into R, I use the command:
+
+```R
+secondary_graduates < read.csv("path_to_file/SecondaryGraduates.csv")
+```
+
+If I want to call the data set something else in R, I can define a variable at the same time that I read in the data set:
+
+```R
+head(secondary_graduates)
+```
+
+It is often a good idea to take a quick look at the data set when you first read it into R. Some data sets are very large so you might not want to print the entire data set. To see what just the column headers and first 6 rows of the data set look like, you can use the command:
+
+```R
+head(secondary_graduates)
+```
+
+### Practice Question
+
+The following is related to the data set SecondaryGraduates which is available for download in Brightspace.
+
+1. Download and save the SecondaryGraduates file to your computer (in your designated R folder). Read the file into R and name it grad. Data.
+  Note: Your working directory needs to be set to whatever folder you are saving this file in. Recall, to set your working directory in R click on Session − > Set Working directory − > Choose directory.
+2. Using the head() function, determine the column names of the data set. 
+3. Determine the mean yearly number of secondary graduates between the years 2003 and 2019.
+4. Assign the Year column from the data set to a vector called yrs. Be sure to force the years to be character variables, using the command as.character().
+5. Assign the Number column from the data set to a vector called num.grads.
+6. Use the names() function in R to assign the elements on the num.grads vector the names coming from the years vector.
+7. Set the seed to be 21. Then, take a random sample of size 6 from the num.grads vector. 8. Find the sample average annual of graduates from secondary school.
 
 # Chapter 5 - Data Wrangling with dplyr Package
 
@@ -1423,7 +1570,7 @@ gapminder %>% summarize(mean_pop = mean(pop))
 
 se the summarize command to determine the median life expectancy in the entire gapminder data frame, calling it med lifeExp.
 
-- [ ] 59.47444
+- [x] 59.47444
 - [ ] 60.7125
 - [ ] 12.91711
 
@@ -1436,12 +1583,12 @@ It is often the case that you want to use more than one verb. Since we use pipin
 - Determine the median life expectancy for Canada (hint: combine the verbs filter and summarize).
 
 - [ ] 74.985
-- [ ] 74.90275
+- [x] 74.90275
 - [ ] 24499150
 
 - What are the two countries in Europe with the largest population in 2002?
 
-- [ ] Germany and United Kingdom
+- [x] Germany and United Kingdom
 - [ ] Turkey and United Kingdom
 - [ ] Germany and Turkey
 
@@ -1461,7 +1608,7 @@ gapminder %>% group_by(country) %>% summarize(mean_pop = mean(pop))
 
 The course ’Data Manipulation with dplyr’ or ‘Introduction to the Tidyverse’ in DataCamp has very good short video explanations on how to use this package. They also use the gapminder dataset.
 
-# Chapter 6 - Visualization
+# Chapter 6 - Visualizing Data using R and ggplot2 package
 
 ## Overview
 
@@ -1607,7 +1754,211 @@ head(lynx.df)
 ggplot(lynx.df, aes(x = Year, y = lynx)) + geom_line()
 ```
 
+## Histograms
+
+### Motivating Example
+
+Let’s look the penguin data set in the palmerpeguins package. A histogram is an effective visualization tool when **<u>you have a numerical variable that takes on many different values.</u>**
+
+A histogram groups values together and then displays how many individuals in the sample belong to each group of values. 
+
+For example, the distribution of the following variables could be displayed using a histogram:
+
+- weight (mass) of penguins
+- speed of vehicles crossing an intersection when traffic light turns yellow 
+- SAT scores
+
+Suppose you were trying to determine the distribution of SAT scores. If you have a sample of 20 people with the following scores:
+
+![image-20230619212929490](assets/image-20230619212929490.png)
+
+### How to make a Histogram using ggplot()
+
+To produce a histogram, the word geom histogram can be used in ggplot().
+
+Let’s use the morley data set with the basic command:
+
+```R
+morley_hist <- ggplot(morley, aes(x = Speed)) + geom_histogram()
+```
+
+### Notes
+
+Sometimes you may want to indicate where the mean or median is in your data. You can do this by adding:
+
+```R
+geom_vline(xintercept = , linetype = "dashed", size = 1.0) 
+
+ggplot(morley, aes(x = Speed)) + geom_histogram() + geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1)
+```
+
+You can specify border and fill colours:
+
+```R
+ggplot(morley, aes(x = Speed)) + geom_histogram(color = "red", fill = "green") + geom_vline(xintercept = mean(morley$Speed), linetype = "dashed", size = 1.0)
+```
+
+You can add titles and labels exactly the same way as the bar graphs.
+
+You can adjust interval length of each bar (bin width) by specifying binwidth in aes():
+
+```R
+aes(binwidth = ... )
+```
+
+Set the bin width to help tell your story.
+
+You can convert frequencies to relative frequencies by using the following in aes():
+
+```R
+aes(y = count/sum(count)) 
+#or 
+aes(y = 100*count/sum(count)) # if you want percentages
+```
+
+You can specify your x-axis range by adding xlim( , ) parameter
+
+```R
++ xlim(lower, upper)
+```
+
+By limiting the range, some information is lost.
+
+### What can we tell from a Histogram?
+
+> **<u>Distribution</u>**
+>
+> The term distribution is used commonly in statistics. A distribution of a variable is how data is spread over the range of values
+
+Thus, when we plot data. We are visualizing the distribution of the variable we are plotting.
+
+> **<u>Outlier</u>**
+>
+> An observation that falls outside the overall pattern of the graph. This is a value in the dataset that lies far away from the rest of the data.
+>
+> ![image-20230619213535633](assets/image-20230619213535633.png)
+
+> **<u>Symmetric</u>**
+>
+> The left and the right of the histogram are approximately mirror images of each other.
+>
+> ![image-20230619213647565](assets/image-20230619213647565.png)
+
+#### Skewed to the left
+
+- Left side of the histogram extends further out rather than the right side
+
+![image-20230619213917467](assets/image-20230619213917467.png)
+
+#### Skewed to the right
+
+- Right side of histogram has long tail
+
+![image-20230619213927972](assets/image-20230619213927972.png)
+
+![image-20230619213945342](assets/image-20230619213945342.png)
+
+> **<u>Variability</u>**
+>
+> The spread of the values.
+>
+> ![image-20230619214105858](assets/image-20230619214105858.png)
+
+## Line Graphs 
+
+> **<u>Line Graph</u>**
+>
+> Numerical variable, ollected over time. 
+>
+> When x variable is time, we all this series.
+
+### Line Graphs with ggplot
+
+me series data is very easy to plot in R. The word is use is geom line.You
+will need to specify which variable goes to the x-axis and which goes to the y-axis. For example, the following code creates a line graph for the lynx time series:
+
+```R
+Year <- 1821:1934 lynx.df <- as.data.frame(cbind(Year, lynx)) head(lynx.df)
+ggplot(lynx.df, aes(x = Year, y = lynx)) + geom_line()
+```
+
+> **<u>Question:</u>** What can we notice from plotting a line graph?
+>
+> **<u>Answer:</u>** We can notice something called a **trend** and **seasonal variation**
+
+> **<u>Trend</u>**
+>
+> In a time series is a long term trend, goes up or down.
+
+> **<u>Seasonal Variation</u>**
+>
+> A pattern repeating itself over a period of time
+
 # Chapter 7 - Distribution
+
+## Overview
+
+n Chapter 6, we saw methods of visualizing the distribution of numerical variables with histograms. We also briefly discussed characteristics of a distribution such as variability, symmetry and skewdness. With a concept such as variability, we have not seen how to precisely capture this with a numerical value. In this chapter, we will learn not only how to compute variability, but several numerical values that help us describe a distribution.
+
+## Motivating Example
+
+Consider the airquality data set that is built into R. This data set consists
+of daily readings of air quality values from May 1, 1973 to September 30, 1973 in New York. The variables in this data set are Mean Ozone (in parts per billion), Solar radiation, Average Wind speed, and Maximum daily Temperature (measured in degrees Fahrenheit). All variables are numerical and their distributions can be visualized by creating histograms. How else can we quantify their distributions?
+
+We begin with some definitions:
+
+## Definitions of median and Quartiles
+
+> **<u>Median</u>**
+>
+> The midpoint of a distribution. it is the number such that half (50%) of the observations are smaller and half are larger.
+>
+> It is one way to measure the center of a distribution. (Mean is another)
+
+## How to calculate the median 
+
+1. Arrange all observations from smallest to largest.
+2. Select the middle observation. If there is no middle (because the number of observations is even) then take the average of the two middle values. This is the median.
+
+### Example
+
+Consider a random sample of 10 observations of the Temperature variable from the airquality data set:
+
+![image-20230619215223742](assets/image-20230619215223742.png)
+
+Determine the median of this sample:
+
+![image-20230619215253019](assets/image-20230619215253019.png)
+
+> Note:
+>
+> What we just computed was a **sample median** (thus it was an observed value of a statistic ˜x). If we had the median of the entire population then that would be the value of the **population parameter** M.
+
+
+
+## How to compute median and quartiles in R
+
+### Practice Question
+
+## How to make a Boxplot:
+
+### Example
+
+## Standard Deviation
+
+### Definition
+
+### Notiation
+
+### How to Compute s (by hand)
+
+### Example
+
+### Computing Sample standard deviation in R
+
+### Interpreting Standard Deviation
+
+## When to use Median vs When to use Mean
 
 # Chapter 8 - Normal Distribution
 

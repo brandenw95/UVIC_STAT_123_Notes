@@ -1,0 +1,176 @@
+---
+title: "Matrices in R"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Example from the Matrices in R notes. 
+```{r Matrix Example}
+
+# Part (a): creating a matrix M
+
+M = matrix(c(80,12,40,3,20,0.8,25,1),byrow=TRUE,ncol=2)
+
+# Print the matrix out to look at it
+M
+
+# Part (b): create vectors with the individual "names" and
+# a vector with the two variable names.
+
+individuals = c("A","B","C","D")
+variables = c("Weight","Age")
+
+# Part (c): Name the rows using the individuals vector and 
+# name the columns using the variables vector. 
+
+rownames(M) = individuals
+colnames(M) = variables
+
+# Print out the matrix M
+M
+
+
+
+```
+
+
+```{r adding rows and columns}
+
+# Add the rows of a matrix, use the command rowSums()
+
+rowSums(M)
+
+
+# Add the columns of a matrix, use the command colSums()
+
+colSums(M)
+
+```
+
+Adding another row or column to a matrix
+```{r Adding row and column}
+
+#  Suppose we have a new individual E with weight 30 and age 1.5
+# we can add them as a new row to the matrix M
+
+newM = rbind(M,c(30,1.5))
+newM
+
+individuals
+
+rownames(newM)<-c(individuals, "E")
+
+newM
+
+```
+
+Selecting elements from a Matrix
+```{r Selecting elements from a Matrix}
+
+# the output of this is the element in row 1 column 2
+M[1,2]
+
+M[4,3]
+
+# the output of this is the entire second column
+M[,2]
+
+x <- matrix(c(1:7), nrow=3)
+
+```
+
+```{r}
+M
+
+max(M)
+min(M)
+
+which.max(M)
+which.min(M)
+
+which.max(M[,1])
+which.min(M[,2])
+
+#Note: which.max() and which.min() will only find the location of the first max
+#and min
+
+
+```
+
+Creating data frame
+
+```{r}
+sample1.df<- data.frame("Name"=c("Juan","Maria","Mark"),  
+                    "Age"=c(22,15,19), 
+                    "Vote"=c(TRUE, FALSE, TRUE))
+
+sample1.df
+
+Name=c("Juan","Maria","Mark")
+Age=c(22,15,19)
+Vote=c(TRUE, FALSE, TRUE)
+
+sample2.df <- as.data.frame(cbind(Name, Age, Vote))
+
+sample2.df
+
+class(sample1.df)
+dta
+class(sample2.df)
+
+```
+
+
+Practice Example: Turning a data frame into a matrix
+```{r data frame to matrix}
+
+# Part (a): Preview the first 2 rows of PlantGrowth
+
+class(PlantGrowth)
+
+head(PlantGrowth,2)
+
+# Part (b): Create a matrix using the first column of PlantGrowth
+
+weightMatrix = as.matrix(PlantGrowth[,1])
+
+# or
+
+weightMatrix = as.matrix(PlantGrowth$weight)
+
+# Note: weightMatrix is NOT a vector.
+
+weightVector <-PlantGrowth$weight
+
+class(weightVector)
+
+is.vector(weightVector)
+
+is.matrix(weightVector)
+
+# Print out the new matrix:
+weightMatrix
+
+# Part (c): Look at the class of weightMatrix and PlantGrowth
+
+class(weightMatrix)
+
+class(PlantGrowth)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
