@@ -1003,7 +1003,7 @@ p^ = (# of subjects in the sample with the characteristic) / (number of people i
 #### Parameter: Population Variance
 
 $$
-\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2
+\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i - \mu)^2
 $$
 
 
@@ -1011,7 +1011,7 @@ $$
 #### Statistic: Sample Variance
 
 $$
-s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
+s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2
 $$
 
 > Note: 
@@ -1395,7 +1395,7 @@ head(secondary_graduates)
 The following is related to the data set SecondaryGraduates which is available for download in Brightspace.
 
 1. Download and save the SecondaryGraduates file to your computer (in your designated R folder). Read the file into R and name it grad. Data.
-  Note: Your working directory needs to be set to whatever folder you are saving this file in. Recall, to set your working directory in R click on Session − > Set Working directory − > Choose directory.
+    Note: Your working directory needs to be set to whatever folder you are saving this file in. Recall, to set your working directory in R click on Session − > Set Working directory − > Choose directory.
 2. Using the head() function, determine the column names of the data set. 
 3. Determine the mean yearly number of secondary graduates between the years 2003 and 2019.
 4. Assign the Year column from the data set to a vector called yrs. Be sure to force the years to be character variables, using the command as.character().
@@ -2286,3 +2286,115 @@ These are some of the questions we seek to discuss further in this part of the c
 > is a range of values (estimate is in the middle of the range)which we are y% confident that contains the true value of the parameter. 
 >
 > - (estimate) +/- (margin of error)
+
+# Chapter 10 - Bootstrapping a sampling distribution
+
+## Overview
+
+ In Chapter 8, we defined a sampling distribution for a statistic as the distribution that comes from sampling the population repeatedly, computing a statistic on each sample, and then plotting all of the observed values of the statistic. We focussed on two statistics that have known distributions; the sample mean (¯x) and the sample proportion (ˆp) which are both approximately normal for large sample sizes.
+
+Knowing the distribution for the sample mean and the sample proportion allowed us to compute confidence intervals for the population parameters that these statistics are estimating. Specifically, it allowed us to compute the critical value (which is part of the margin of error). 
+
+In this lecture, we are going to see how to handle statistics that we do not know the distribution for by combining our knowledge of sampling distributions with writing loops in R. We will learn how to approximate the sampling distribution for a statistic and use that to compute confidence intervals for the parameter that the statistic estimates.
+
+## Learning Objectives
+
+In this lecture, we will learn:
+
+- the concept of Bootstrapping • how to write Bootstrap code in R
+- use a Bootstrap to approximate sampling distributions for any statistic
+- use a Boostrapped sampling distribution to compute an approximate confidence interval.
+
+## Bootstrapping
+
+Suppose you take a sample of size n from the population of interest and you compute the observed value of a statistic using that sample. Often times the observed value of the statistic isn’t enough, you also want a confidence interval for the parameter that you are estimating with the statistic. 
+
+To find a confidence interval, you need to know how to compute the standard error of the statistic and you also need to be able to compute the critical value for your confidence interval. If you do not know the sampling distribution for the statistic, then you can’t determine either of these values. So how can you create a confidence interval?
+
+## Option 1
+
+- You could take many (maybe 1000) samples of size n from the population. 
+- Then you could compute the observed value of the statistic on each sample. 
+- Then you could plot the sampling distribution for the statistic. 
+- Then you could use the quantile() function in R to approximate the confidence interval.
+
+> **<u>Question:</u>** Why do you think Option 1 is not a feasible idea? 
+>
+> **<u>Answer:</u>**. Repeated sampling from population. Not always possible even if it was, it is time consuming and expensive.
+
+Start with 1 sample of size n (without replacement)
+
+Instead, we slightly alter Option 1 and do something else called **bootstrapping**.
+
+> **<u>bootstrapping a sampling distribution</u>**
+>
+> Taking repeated samples (With replacements) of size n from our one existing sample of size n. Then we computer the sample statistics for those samples that will give us an approximate sampling distribution.
+
+### Question 1
+
+Suppose our original sample of observations is stored in a vector in R called *samp_vec*. How do we bootstrap a single sample of size n with replacement?
+
+```R
+
+```
+
+
+
+### Question 2
+
+Suppose the statistic we want to compute is the sample median. How do we compute the sample median on our bootstrapped sample?
+
+```R
+
+```
+
+
+
+### Question 3
+
+How do we bootstrap 10000 samples (with replacement) of size *n* and compute the sample median on each sample?
+
+```
+boot_var = numeric()
+
+```
+
+## Practice Question
+
+Download the file bootstrap sample.csv from Brightspace and read the data set into R. Save the variable from the data set to a vector called original sample.
+
+We are going to work through the following steps to bootstrap the sampling distribution for the sample standard deviation s.
+
+- Create an empty vector called boot sample. What is the code you should use to do this?
+  - [ ]  boot sample = sample()
+  - [ ]  boot sample = numeric()
+  - [ ]  boot sample = char()
+  - [ ]  boot sample = matrix()
+- Determine the sample size of the original sample, save this value as the variable n.
+  - [ ]   n = size(original sample)
+  - [ ]  n = original sample
+  - [ ]  n = sample(original sample)
+  - [ ]  n = length(original sample)
+
+- Write a for-loop which computes the standard deviation of 10000 samples (each of size n) taken (with replacement) from the original sample.
+
+- To estimate the standard deviation of the variable, take the average of all of the bootstrapped standard deviations.
+
+  - > **<u>Note:</u>** Since there is a random aspect to this (with the sampling) all of our answers will be a little different, but because we did 10000 samples, our answer should be fairly similar.
+
+  - [ ]  Approx. 58
+
+  - [ ]  Approx. 64
+
+  - [ ]  Approx. 69
+
+  - [ ]  Approx. 72
+
+- Now, approximate a 90% confidence interval for the standard deviation:
+
+  - [ ]  (58, 69)
+  - [ ]  (55, 75)
+  - [ ]  (64, 72)
+  - [ ]  (58, 64)
+
+- Plot a histogram of the bootstrapped confidence interval, add two vertical lines at each of the confidence interval bounds.
