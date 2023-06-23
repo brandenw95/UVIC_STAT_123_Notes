@@ -2367,14 +2367,14 @@ We are going to work through the following steps to bootstrap the sampling distr
 
 - Create an empty vector called boot sample. What is the code you should use to do this?
   - [ ]  boot sample = sample()
-  - [ ]  boot sample = numeric()
+  - [x]  boot sample = numeric()
   - [ ]  boot sample = char()
   - [ ]  boot sample = matrix()
 - Determine the sample size of the original sample, save this value as the variable n.
   - [ ]   n = size(original sample)
   - [ ]  n = original sample
   - [ ]  n = sample(original sample)
-  - [ ]  n = length(original sample)
+  - [x]  n = length(original sample)
 
 - Write a for-loop which computes the standard deviation of 10000 samples (each of size n) taken (with replacement) from the original sample.
 
